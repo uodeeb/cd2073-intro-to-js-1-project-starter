@@ -244,10 +244,8 @@ function addToCart(productSKU) {
     if (product.SKU === productSKU && !cartArr.includes(product)) {
       product.quantity += 1;
       cartArr.push(product);
-      console.log(cartArr);
     } else if (product.SKU === productSKU && cartArr.includes(product)) {
       increase(product.SKU);
-      console.log(cartArr);
     }
   });
 }
@@ -287,10 +285,8 @@ function remove(productSKU) {
   for (prod of cartArr) {
     if (prod.SKU === productSKU) {
       prod.quantity = 0;
-      console.log(cartArr);
       let prodIndex = cartArr.indexOf(prod);
       cartArr.splice(prodIndex, 1);
-      console.log(cartArr);
     }
   }
 }
@@ -328,15 +324,12 @@ function pay(amount) {
     owed = cartTotal();
     if (owed == rec) {
       sum = 0;
-      console.log("triggered-!57" + sum);
     }
     if (owed > rec) {
       sum = rec - owed;
-      console.log("triggered-!62" + sum);
     }
     if (owed < rec) {
       sum = rec - owed;
-      console.log("triggered-!68" + sum);
     }
     return Number(sum.toFixed(2));
   }
