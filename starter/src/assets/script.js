@@ -299,7 +299,6 @@ function cartTotal() {
   cartArr.map((product) => {
     let prodTotal = product.quantity * product.price;
     total += prodTotal;
-    console.log(total);
   });
   return Number(total);
 }
@@ -315,10 +314,8 @@ function pay(amount) {
   if (sum < 0) {
     let fin = 0;
     owed = sum;
-    console.log("triggered-!43", sum, rec);
     fin = owed + rec;
     sum = fin;
-    console.log("triggered-!46", sum, rec);
     return Number(fin.toFixed(2));
   } else if (sum >= 0) {
     owed = cartTotal();
