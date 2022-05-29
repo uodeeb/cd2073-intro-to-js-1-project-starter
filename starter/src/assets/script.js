@@ -232,7 +232,8 @@ const productsArr = [
 ];
 /* Declare an empty array named cartArr to hold the items in the cart */
 let cartArr = [];
-let totalPaid = 0;
+let owed = 0;
+let sum = 0;
 /* Create a function named addToCart that takes in the product SKU as an argument
   - addToCart should get the correct product based on the SKU
   - addToCart should then increase the product's quantity
@@ -311,30 +312,44 @@ function cartTotal() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
+
 function pay(amount) {
-  totalPaid = cartTotal();
-  if (amount - totalPaid > 0) {
-    let sum = (amount - totalPaid).toFixed(2);
-    return Number(sum);
-  } else if (amount - totalPaid < 0) {
-    let sum = (amount - totalPaid).toFixed(2);
-    return Number(sum);
+  let rec = amount;
+  owed = sum;
+  if (sum < 0) {
+    let fin = 0;
+    owed = sum;
+    console.log("triggered-!43", sum, rec);
+    fin = owed + rec;
+    sum = fin;
+    console.log("triggered-!46", sum, rec);
+    return Number(fin.toFixed(2));
+  } else if (sum >= 0) {
+    owed = cartTotal();
+    if (owed == rec) {
+      sum = 0;
+      console.log("triggered-!57" + sum);
+    }
+    if (owed > rec) {
+      sum = rec - owed;
+      console.log("triggered-!62" + sum);
+    }
+    if (owed < rec) {
+      sum = rec - owed;
+      console.log("triggered-!68" + sum);
+    }
+    return Number(sum.toFixed(2));
   }
 }
 
 /* Place stand out suggestions here */
 /*___________________________________ build an emptyCart function_________________ */
-const emptyCart=()=>{
-  cartArr.forEach(prod=>{
-    prod.quantity=0
-  })
-  cartArr=[]
-}
-/*___________________________________ build a cuurency convertor function_________________ */
-const currency=(curr)=>{
-  console.log(curr)
-  return curr
-}
+const emptyCart = () => {
+  cartArr.forEach((prod) => {
+    prod.quantity = 0;
+  });
+  cartArr = [];
+};
 
 /* The following is for running unit tests. 
    To fully complete this project, it is expected that all tests pass.
@@ -350,6 +365,5 @@ module.exports = {
   remove,
   cartTotal,
   pay,
-  emptyCart,
-  currency,
+  emptyCart
 };
